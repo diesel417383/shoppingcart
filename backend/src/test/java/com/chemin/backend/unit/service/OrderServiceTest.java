@@ -1,7 +1,5 @@
 package com.chemin.backend.unit.service;
 
-import com.chemin.backend.entity.Order;
-import com.chemin.backend.exception.ResourceNotFoundException;
 import com.chemin.backend.repository.OrderRepository;
 import com.chemin.backend.service.OrderService;
 import org.junit.jupiter.api.Test;
@@ -10,10 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)

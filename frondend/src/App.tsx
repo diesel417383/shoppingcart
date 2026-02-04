@@ -2,12 +2,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import CartPage from './pages/CartPage';
-import OrdersPage from './pages/OrdersPage';
-import AddressesPage from './pages/AddressesPage';
-import LoginPage from './pages/LoginPage';
-import RegisterAccountPage from './pages/RegisterAccountPage';
+import ProductPage from './pages/user/ProductPage';
+import CartPage from './pages/user/CartPage';
+import OrdersPage from './pages/user/OrdersPage';
+import AddressesPage from './pages/user/AddressesPage';
+import LoginPage from './pages/user/LoginPage';
+import RegisterPage from './pages/user/RegisterPage';
+import AboutView from './views/AboutView';
+import UserManagePage from './pages/admin/UserManagePage';
+
+import AccessRoute from '@/access';
 import './App.css';
 
 const { Content } = Layout;
@@ -20,16 +24,53 @@ function App() {
         <Content style={{ padding: '0 20px', marginTop: 64, flex: 1 }}>
           <div style={{ padding: 16 }}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/cart-items" element={<CartPage />} />
-              <Route path="/orders" element={<OrdersPage />} />
-              <Route path="/addresses" element={<AddressesPage />} />
+              {/* public */}
+              <Route path="/" element={<ProductPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterAccountPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/about" element={<AboutView />} />
+
+              {/* login required */}
+              <Route
+                path="/cart-items"
+                element={
+                  <AccessRoute allowRoles={['user', 'admin']}>
+                    <CartPage />
+                  </AccessRoute>
+                }
+              />
+
+              <Route
+                path="/orders"
+                element={
+                  <AccessRoute allowRoles={['user', 'admin']}>
+                    <OrdersPage />
+                  </AccessRoute>
+                }
+              />
+
+              <Route
+                path="/addresses"
+                element={
+                  <AccessRoute allowRoles={['user', 'admin']}>
+                    <AddressesPage />
+                  </AccessRoute>
+                }
+              />
+
+              {/* admin only */}
+              <Route
+                path="/admin"
+                element={
+                  <AccessRoute allowRoles={['admin']}>
+                    <UserManagePage />
+                  </AccessRoute>
+                }
+              />
             </Routes>
           </div>
         </Content>
-        <Footer/>
+        <Footer />
       </Layout>
     </Router>
   );

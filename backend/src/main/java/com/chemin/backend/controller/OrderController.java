@@ -1,12 +1,13 @@
 package com.chemin.backend.controller;
 
-import com.chemin.backend.dto.request.CreateOrderRequest;
-import com.chemin.backend.dto.response.OrderItemResponse;
-import com.chemin.backend.dto.response.OrderResponse;
+import com.chemin.backend.model.dto.CreateOrderRequest;
+import com.chemin.backend.model.vo.OrderItemResponse;
+import com.chemin.backend.model.vo.OrderResponse;
 import com.chemin.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -24,7 +25,6 @@ public class OrderController {
     @GetMapping("/{orderId}/items")
     public ResponseEntity<List<OrderItemResponse>> getOrderItems(@PathVariable Long orderId) {
         return ResponseEntity.ok(orderService.findOrderItemsByOrderId(orderId));
-
     }
 
     @PostMapping("/create")

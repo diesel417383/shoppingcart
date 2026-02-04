@@ -1,9 +1,9 @@
 package com.chemin.backend.service;
 
-import com.chemin.backend.Mapper.ProductMapper;
-import com.chemin.backend.dto.request.CreateProductRequest;
-import com.chemin.backend.dto.response.ProductResponse;
-import com.chemin.backend.entity.Product;
+import com.chemin.backend.mapper.ProductMapper;
+import com.chemin.backend.model.dto.CreateProductRequest;
+import com.chemin.backend.model.vo.ProductResponse;
+import com.chemin.backend.model.entity.Product;
 import com.chemin.backend.exception.ResourceNotFoundException;
 import com.chemin.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

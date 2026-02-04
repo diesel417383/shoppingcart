@@ -1,11 +1,11 @@
 package com.chemin.backend.controller;
 
-import com.chemin.backend.Mapper.UserMapper;
-import com.chemin.backend.dto.response.OrderResponse;
-import com.chemin.backend.dto.response.UserRegisterResponse;
-import com.chemin.backend.dto.request.UserRegisterRequest;
-import com.chemin.backend.entity.Order;
-import com.chemin.backend.entity.User;
+import com.chemin.backend.model.dto.UserLoginRequest;
+import com.chemin.backend.model.vo.OrderResponse;
+import com.chemin.backend.model.vo.UserLoginResponse;
+import com.chemin.backend.model.vo.UserRegisterResponse;
+import com.chemin.backend.model.dto.UserRegisterRequest;
+import com.chemin.backend.model.entity.User;
 import com.chemin.backend.service.OrderService;
 import com.chemin.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,15 @@ public class UserController {
 
 
     // Used for testing
-    @GetMapping("/{userId}")
+    @GetMapping("/id/{userId}")
     public ResponseEntity<User> getUser(@PathVariable Long userId){
         User user = userService.findById(userId);
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginResponse> userLogin(@RequestBody UserLoginRequest userLoginRequest){
+        return ResponseEntity.ok(userService.userLogin(userLoginRequest));
     }
 
     @GetMapping("{userId}/orders")
@@ -45,10 +50,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserRegisterResponse> registerUser(@RequestBody UserRegisterRequest userRegisterRequest){
-        User user = userService.createUser(userRegisterRequest);
-        UserRegisterResponse userRegisterResponse = userService.mapToUserRegisterResponse(user);
-        return ResponseEntity.ok(userRegisterResponse);
+    public ResponseEntity<UserRegisterResponse> userRegister(@RequestBody UserRegisterRequest userRegisterRequest){
+        return ResponseEntity.ok(userService.userRegister(userRegisterRequest));
     }
 
 }

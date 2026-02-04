@@ -1,7 +1,7 @@
 package com.chemin.backend.unit.controller;
 
 import com.chemin.backend.controller.ProductController;
-import com.chemin.backend.entity.Product;
+import com.chemin.backend.model.entity.Product;
 import com.chemin.backend.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

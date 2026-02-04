@@ -1,6 +1,6 @@
 package com.chemin.backend.unit.service;
 
-import com.chemin.backend.entity.Product;
+import com.chemin.backend.model.entity.Product;
 import com.chemin.backend.repository.ProductRepository;
 import com.chemin.backend.service.ProductService;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

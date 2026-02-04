@@ -1,11 +1,11 @@
 package com.chemin.backend.service;
 
-import com.chemin.backend.Mapper.OrderMapper;
-import com.chemin.backend.dto.response.OrderItemResponse;
-import com.chemin.backend.dto.response.OrderResponse;
-import com.chemin.backend.entity.*;
-import com.chemin.backend.enums.OrderStatus;
+import com.chemin.backend.mapper.OrderMapper;
+import com.chemin.backend.model.vo.OrderItemResponse;
+import com.chemin.backend.model.vo.OrderResponse;
+import com.chemin.backend.model.enums.OrderStatusEnum;
 import com.chemin.backend.exception.ResourceNotFoundException;
+import com.chemin.backend.model.entity.*;
 import com.chemin.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -67,7 +66,7 @@ public class OrderService {
             order.setOrderNo(OrderNoGenerator.generate());
             order.setUser(user);
             order.setAddress(address);
-            order.setStatus(OrderStatus.PENDING);
+            order.setStatus(OrderStatusEnum.PENDING);
 
             BigDecimal totalAmount = BigDecimal.ZERO;
             List<OrderItem> orderItems = new ArrayList<>();

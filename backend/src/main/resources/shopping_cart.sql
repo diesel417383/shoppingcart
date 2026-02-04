@@ -22,10 +22,13 @@ DROP TABLE IF EXISTS users CASCADE;
 -- =========================
 CREATE TABLE users (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    username VARCHAR(255) DEFAULT 'User' NOT NULL,
+    account VARCHAR(255) NOT NULL,                      -- 新增
     password VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255) DEFAULT '' NOT NULL COMMENT '使用者頭像圖片',
+    email VARCHAR(255) NOT NULL UNIQUE,
+    avatar VARCHAR(255) DEFAULT ''      NOT NULL        COMMENT '用戶頭像',
+    profile VARCHAR(255) DEFAULT ''     NOT NULL        COMMENT '用戶簡介', -- 新增
+    role VARCHAR(255) DEFAULT 'user'    NOT NULL        COMMENT '用戶角色: user/ admin', -- 新增
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -117,6 +120,7 @@ CREATE INDEX idx_order_item_product ON order_item(product_id);
 -- =========================
 -- 初始資料
 -- =========================
+
 INSERT INTO product(name, description, price, stock, images, category) VALUES
 ('iPhone 15', 'Apple iPhone 15 128GB', 29900.00, 50, 'iphone15_1.jpg,iphone15_2.jpg', '手機'),
 ('MacBook Air M2', 'Apple MacBook Air M2 13-inch', 39900.00, 20, 'mba_m2_1.jpg', '筆電'),
@@ -124,6 +128,3 @@ INSERT INTO product(name, description, price, stock, images, category) VALUES
 ('Samsung Galaxy S23', 'Samsung Galaxy S23 256GB', 26900.00, 35, 'galaxy_s23.jpg', '手機'),
 ('Sony WH-1000XM5', 'Sony 無線降噪耳機 WH-1000XM5', 11900.00, 60, 'sony_xm5.jpg', '耳機'),
 ('iPad Air', 'Apple iPad Air 10.9-inch', 19900.00, 40, 'ipadair.jpg', '平板');
-
-INSERT INTO users(username, email, password) VALUES
-('test', 'test@gmail.com', 'test123');

@@ -13,14 +13,9 @@ public class TestConfig {
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
 
-        // ✅ 支援 Java 8 time (LocalDateTime)
         mapper.registerModule(new JavaTimeModule());
-
-        // ✅ 不要輸出 timestamp
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         return mapper;
     }
-
-
 }

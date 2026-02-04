@@ -1,9 +1,9 @@
 package com.chemin.backend.integration.service;
 
-import com.chemin.backend.dto.request.AddProductToCartRequest;
-import com.chemin.backend.entity.CartItem;
-import com.chemin.backend.entity.Product;
-import com.chemin.backend.entity.User;
+import com.chemin.backend.model.dto.AddProductToCartRequest;
+import com.chemin.backend.model.entity.CartItem;
+import com.chemin.backend.model.entity.Product;
+import com.chemin.backend.model.entity.User;
 import com.chemin.backend.repository.CartItemRepository;
 import com.chemin.backend.repository.ProductRepository;
 import com.chemin.backend.repository.UserRepository;

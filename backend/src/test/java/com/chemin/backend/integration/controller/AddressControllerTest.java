@@ -1,7 +1,7 @@
 package com.chemin.backend.integration.controller;
 
 import com.chemin.backend.BackendApplication;
-import com.chemin.backend.dto.request.CreateAddressRequest;
+import com.chemin.backend.model.dto.CreateAddressRequest;
 import com.chemin.backend.repository.AddressRepository;
 import com.chemin.backend.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;

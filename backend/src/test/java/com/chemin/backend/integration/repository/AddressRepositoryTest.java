@@ -1,7 +1,7 @@
 package com.chemin.backend.integration.repository;
 
-import com.chemin.backend.entity.Address;
-import com.chemin.backend.entity.User;
+import com.chemin.backend.model.entity.Address;
+import com.chemin.backend.model.entity.User;
 import com.chemin.backend.repository.AddressRepository;
 import com.chemin.backend.repository.UserRepository;
 import org.junit.jupiter.api.Test;

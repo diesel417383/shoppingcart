@@ -1,8 +1,8 @@
 package com.chemin.backend.controller;
 
-import com.chemin.backend.dto.request.CreateProductRequest;
-import com.chemin.backend.dto.response.ProductResponse;
-import com.chemin.backend.entity.Product;
+import com.chemin.backend.model.dto.CreateProductRequest;
+import com.chemin.backend.model.vo.ProductResponse;
+import com.chemin.backend.model.entity.Product;
 import com.chemin.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

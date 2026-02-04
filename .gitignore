@@ -193,3 +193,6 @@ target/
 
 ### VS Code ###
 .vscode/
+
+# H2 in memory database
+H2_shopping_cart.sql

@@ -17,19 +17,5 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-
-
-    @Component
-    public class H2DataLoader implements CommandLineRunner {
-
-        @Autowired
-        private DataSource dataSource;
-
-        @Override
-        public void run(String... args) throws Exception {
-            try (Connection conn = dataSource.getConnection()) {
-                ScriptUtils.executeSqlScript(conn, new ClassPathResource("H2_shopping_cart.sql"));
-            }
-        }
-    }
+    
 }

@@ -1,12 +1,12 @@
 package com.chemin.backend.service;
 
-import com.chemin.backend.Mapper.CartItemMapper;
-import com.chemin.backend.dto.request.AddProductToCartRequest;
-import com.chemin.backend.dto.response.CartItemResponse;
-import com.chemin.backend.dto.CartItemDto;
-import com.chemin.backend.entity.CartItem;
-import com.chemin.backend.entity.Product;
-import com.chemin.backend.entity.User;
+import com.chemin.backend.mapper.CartItemMapper;
+import com.chemin.backend.model.dto.AddProductToCartRequest;
+import com.chemin.backend.model.vo.CartResponse;
+import com.chemin.backend.model.dto.CartItemResponse;
+import com.chemin.backend.model.entity.CartItem;
+import com.chemin.backend.model.entity.Product;
+import com.chemin.backend.model.entity.User;
 import com.chemin.backend.exception.ResourceNotFoundException;
 import com.chemin.backend.repository.CartItemRepository;
 import com.chemin.backend.repository.ProductRepository;
@@ -73,19 +73,19 @@ public class CartItemService {
     }
 
     @Transactional
-    public CartItemResponse getCart(Long userId) {
+    public CartResponse getCart(Long userId) {
         List<CartItem> cartItems = cartItemRepository.findByUserId(userId).orElseThrow(() -> new ResourceNotFoundException("User ID not found"));
 
-        List<CartItemDto> cartItemDtoList = cartItemMapper.toListCartItemDto(cartItems);
+        List<CartItemResponse> cartItemResponseList = cartItemMapper.toListCartItemDto(cartItems);
 
-        Double totalPrice = cartItemDtoList.stream()
-                .mapToDouble(CartItemDto::getTotalPrice)
+        Double totalPrice = cartItemResponseList.stream()
+                .mapToDouble(CartItemResponse::getTotalPrice)
                 .sum();
 
-        CartItemResponse cartItemResponse = new CartItemResponse();
-        cartItemResponse.setItems(cartItemDtoList);
-        cartItemResponse.setTotalPrice(totalPrice);
-        return cartItemResponse;
+        CartResponse cartResponse = new CartResponse();
+        cartResponse.setItems(cartItemResponseList);
+        cartResponse.setTotalPrice(totalPrice);
+        return cartResponse;
     }
 
     @Transactional
@@ -107,7 +107,7 @@ public class CartItemService {
         cartItemRepository.delete(cartItem);
     }
 
-    public CartItemDto mapToCartItemDto(CartItem cartItem){
+    public CartItemResponse mapToCartItemDto(CartItem cartItem){
         return cartItemMapper.toCartItemDto(cartItem);
     }
 }

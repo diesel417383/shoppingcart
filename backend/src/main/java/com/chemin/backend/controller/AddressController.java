@@ -1,12 +1,14 @@
 package com.chemin.backend.controller;
 
-import com.chemin.backend.dto.request.CreateAddressRequest;
-import com.chemin.backend.dto.response.AddressResponse;
-import com.chemin.backend.entity.Address;
+import com.chemin.backend.model.dto.CreateAddressRequest;
+import com.chemin.backend.model.vo.AddressResponse;
+import com.chemin.backend.model.entity.Address;
 import com.chemin.backend.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -17,26 +19,18 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<AddressResponse> getAddressByUserId(@PathVariable Long userId) {
-        return addressService.findByUserId(userId)
-                .map(address -> ResponseEntity.ok(
-                        addressService.mapToAddressResponse(address)
-                ))
-                .orElseGet(() -> ResponseEntity.noContent().build());
+    public ResponseEntity<List<AddressResponse>> getAddressByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(addressService.findByUserId(userId));
     }
 
     @PostMapping
     public ResponseEntity<AddressResponse> createAddress(@RequestBody CreateAddressRequest createAddressRequest) {
-        Address createdAddress = addressService.createAddress(createAddressRequest);
-        AddressResponse addressResponse = addressService.mapToAddressResponse(createdAddress);
-        return ResponseEntity.ok(addressResponse);
+        return ResponseEntity.ok(addressService.createAddress(createAddressRequest));
     }
 
     @PutMapping("/{addressId}")
     public ResponseEntity<AddressResponse> updateAddress(@PathVariable Long addressId, @RequestBody CreateAddressRequest createAddressRequest) {
-        Address address = addressService.updateAddress(addressId, createAddressRequest);
-        AddressResponse addressResponse = addressService.mapToAddressResponse(address);
-        return ResponseEntity.ok(addressResponse);
+        return ResponseEntity.ok(addressService.updateAddress(addressId, createAddressRequest));
     }
 
     @DeleteMapping("/{addressId}")

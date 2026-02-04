@@ -1,6 +1,6 @@
 package com.chemin.backend.repository;
 
-import com.chemin.backend.entity.Product;
+import com.chemin.backend.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
