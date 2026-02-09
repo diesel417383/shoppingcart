@@ -1,7 +1,7 @@
 import { AddressResponse, CreateAddressRequest } from '@/api/types.ts';
 import http from '@/api/http.ts';
 
-export const getAddressesByUserIdUsingGet = async (userId: number): Promise<AddressResponse[]> => {
+export const getAddressesByUserIdUsingGet = async (userId: any): Promise<AddressResponse[]> => {
     try {
         const response = await http.get(`/addresses/${userId}`);
         return response.data;
@@ -19,7 +19,10 @@ export const createAddressUsingPost = async (values: CreateAddressRequest): Prom
     }
 };
 
-export const updateAddressUsingPut = async (addressId: number, values: CreateAddressRequest): Promise<AddressResponse> => {
+export const updateAddressUsingPut = async (
+    addressId: number,
+    values: CreateAddressRequest
+): Promise<AddressResponse> => {
     try {
         const response = await http.put(`/addresses/${addressId}`, values);
         return response.data;

@@ -80,6 +80,7 @@ export interface CartResponse {
 }
 
 export interface AddProductToCartRequest {
+    userId: number;
     productId: number;
     quantity: number;
 }

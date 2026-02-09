@@ -6,7 +6,7 @@ import { getProductsUsingGet, createProductUsingPost } from '@/api/product.api.t
 import { addCartItemToCartUsingPost } from '@/api/cart.api.ts';
 import { getUserId, getUserRole } from '@/utils/auth.ts';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 const { Option } = Select;
@@ -60,7 +60,7 @@ const HomePage = () => {
     const addToCart = async (productId: number) => {
         try {
             if (!userId) {
-                message.error('請先登入');
+                message.warning('請先登入');
                 return;
             }
             await addCartItemToCartUsingPost({
@@ -183,7 +183,7 @@ const HomePage = () => {
                                         >
                                             {product.stock > 0 ? '新增至購物車' : '缺貨'}
                                         </Button>
-                                    )
+                                    ),
                                 ]}
                             >
                                 <Meta
@@ -236,13 +236,7 @@ const HomePage = () => {
             )}
 
             {/* 新增商品 Modal */}
-            <Modal
-                title="新增商品"
-                open={modalVisible}
-                onCancel={handleModalCancel}
-                footer={null}
-                width={600}
-            >
+            <Modal title="新增商品" open={modalVisible} onCancel={handleModalCancel} footer={null} width={600}>
                 <Form
                     form={form}
                     layout="vertical"
@@ -253,14 +247,10 @@ const HomePage = () => {
                         price: 0,
                         stock: '0',
                         images: '',
-                        category: ''
+                        category: '',
                     }}
                 >
-                    <Form.Item
-                        name="name"
-                        label="商品名稱"
-                        rules={[{ required: true, message: '請輸入商品名稱' }]}
-                    >
+                    <Form.Item name="name" label="商品名稱" rules={[{ required: true, message: '請輸入商品名稱' }]}>
                         <Input placeholder="請輸入商品名稱" />
                     </Form.Item>
 
@@ -272,37 +262,19 @@ const HomePage = () => {
                         <Input.TextArea rows={3} placeholder="請輸入商品描述" />
                     </Form.Item>
 
-                    <Form.Item
-                        name="price"
-                        label="商品價格"
-                        rules={[
-                            { required: true, message: '請輸入商品價格' }
-                        ]}
-                    >
+                    <Form.Item name="price" label="商品價格" rules={[{ required: true, message: '請輸入商品價格' }]}>
                         <Input type="number" min="0" placeholder="請輸入商品價格" />
                     </Form.Item>
 
-                    <Form.Item
-                        name="stock"
-                        label="庫存數量"
-                        rules={[{ required: true, message: '請輸入庫存數量' }]}
-                    >
+                    <Form.Item name="stock" label="庫存數量" rules={[{ required: true, message: '請輸入庫存數量' }]}>
                         <Input type="number" min="0" placeholder="請輸入庫存數量" />
                     </Form.Item>
 
-                    <Form.Item
-                        name="images"
-                        label="商品圖片"
-                        rules={[{ message: '請輸入商品圖片 URL' }]}
-                    >
+                    <Form.Item name="images" label="商品圖片" rules={[{ message: '請輸入商品圖片 URL' }]}>
                         <Input placeholder="請輸入商品圖片 URL" />
                     </Form.Item>
 
-                    <Form.Item
-                        name="category"
-                        label="商品分類"
-                        rules={[{ required: true, message: '請輸入商品分類' }]}
-                    >
+                    <Form.Item name="category" label="商品分類" rules={[{ required: true, message: '請輸入商品分類' }]}>
                         <Input placeholder="請輸入商品分類" />
                     </Form.Item>
 

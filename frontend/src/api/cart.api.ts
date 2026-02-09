@@ -1,8 +1,7 @@
-
 import http from './http';
 import { AddProductToCartRequest, CartItemResponse, CartResponse, AddressResponse } from './types';
 
-export const getCartItemsByUserIdUsingGet = async (userId: number): Promise<CartResponse> => {
+export const getCartItemsByUserIdUsingGet = async (userId: any): Promise<CartResponse> => {
     try {
         const response = await http.get(`/cart-items/${userId}`);
         return response.data;
@@ -11,7 +10,7 @@ export const getCartItemsByUserIdUsingGet = async (userId: number): Promise<Cart
     }
 };
 
-export const getAddressesByUserIdUsingGet = async (userId: number): Promise<AddressResponse[]> => {
+export const getAddressesByUserIdUsingGet = async (userId: any): Promise<AddressResponse[]> => {
     try {
         const response = await http.get(`/addresses/${userId}`);
         return response.data || [];
@@ -36,7 +35,7 @@ export const deleteCartItemUsingDelete = async (cartItemId: number): Promise<voi
     }
 };
 
-export const createOrderUsingPost = async (userId: number, addressId: number): Promise<void> => {
+export const createOrderUsingPost = async (userId: any, addressId: number): Promise<void> => {
     try {
         await http.post('/orders/create', {
             userId,

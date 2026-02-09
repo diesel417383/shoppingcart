@@ -105,19 +105,12 @@ tmp/
 temp/
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea/
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
 
 # OS generated files
 *.DS_Store
-.DS_Store?
+.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
@@ -151,7 +144,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# Docker
+
 .dockerignore
 
 # Kubernetes
@@ -161,7 +154,6 @@ wheels/
 *.sql.tmp
 
 HELP.md
-target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -190,9 +182,6 @@ target/
 *.build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/
 
 # H2 in memory database
 H2_shopping_cart.sql

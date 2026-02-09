@@ -3,11 +3,11 @@ import { Card, Button, Modal, Form, Input, Checkbox, message } from 'antd';
 
 import { AddressResponse, CreateAddressRequest } from '@/api/types';
 import { getUserId } from '@/utils/auth';
-import { 
-    getAddressesByUserIdUsingGet, 
-    createAddressUsingPost, 
-    updateAddressUsingPut, 
-    deleteAddressUsingDelete 
+import {
+    getAddressesByUserIdUsingGet,
+    createAddressUsingPost,
+    updateAddressUsingPut,
+    deleteAddressUsingDelete,
 } from '@/api/address.api.ts';
 
 const AddressesPage = () => {
@@ -103,42 +103,38 @@ const AddressesPage = () => {
         <div>
             <h1 style={{ marginBottom: 24 }}>地址管理</h1>
 
+            <Button type="primary" onClick={handleAdd}>
+                新增地址
+            </Button>
+
             {/* ===== 地址列表 ===== */}
-            {addressList.length > 0 ? (
-                addressList.map((address) => (
-                    <Card key={address.id} style={{ width: '100%', marginBottom: 16 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <div>
-                                <h3>
-                                    {address.recipientName}
-                                    {address.isDefault && (
-                                        <span style={{ color: '#1890ff', marginLeft: 8 }}>(預設)</span>
-                                    )}
-                                </h3>
-                                <p>電話: {address.phone}</p>
-                                <p>
-                                    地址:
-                                    {address.city}
-                                    {address.district}
-                                    {address.detailAddress}
-                                </p>
-                            </div>
-                            <div>
-                                <Button onClick={() => handleEdit(address)} style={{ marginRight: 8 }}>
-                                    編輯
-                                </Button>
-                                <Button danger onClick={() => handleDelete(address.id)}>
-                                    刪除
-                                </Button>
-                            </div>
+            {addressList.map((address) => (
+                <Card key={address.id} style={{ width: '100%', marginTop: 16, marginBottom: 16 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div>
+                            <h3>
+                                {address.recipientName}
+                                {address.isDefault && <span style={{ color: '#1890ff', marginLeft: 8 }}>(預設)</span>}
+                            </h3>
+                            <p>電話: {address.phone}</p>
+                            <p>
+                                地址:
+                                {address.city}
+                                {address.district}
+                                {address.detailAddress}
+                            </p>
                         </div>
-                    </Card>
-                ))
-            ) : (
-                <Button type="primary" onClick={handleAdd}>
-                    新增地址
-                </Button>
-            )}
+                        <div>
+                            <Button onClick={() => handleEdit(address)} style={{ marginRight: 8 }}>
+                                編輯
+                            </Button>
+                            <Button danger onClick={() => handleDelete(address.id)}>
+                                刪除
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+            ))}
 
             {/* ===== Modal ===== */}
             <Modal
